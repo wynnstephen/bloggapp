@@ -26,4 +26,5 @@ function addListenerToNavLinks() {
 export default function init() {
     loadViewOnPageRequest();
     addListenerToNavLinks();
+
 }
