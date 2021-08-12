@@ -44,8 +44,8 @@ export function getAuthBearerTokenHeader() {
         ? {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + `${token}`}
-        : false;
-}
+        : {'Content-Type': 'application/json'}
+    }
 
 /**
  * Attempts to set the access and refresh tokens needs to authenticate and authorize the client and user
