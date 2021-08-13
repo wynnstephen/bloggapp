@@ -1,5 +1,5 @@
 import Home from "./views/Home.js";
-import PostIndex from "./views/PostIndex.js";
+import PostIndex, {PostsEvent} from "./views/PostIndex.js";
 import About from "./views/About.js";
 import Error404 from "./views/Error404.js";
 import Loading from "./views/Loading.js";
@@ -33,6 +33,7 @@ export default function router(URI) {
             },
             uri: '/posts',
             title: 'All Posts',
+            viewEvent: PostsEvent
         },
         '/about': {
             returnView: About,
@@ -51,6 +52,13 @@ export default function router(URI) {
             state: {},
             uri: location.pathname,
             title: 'Loading...',
+        },
+        '/register': {
+            returnView: Register,
+            state: {},
+            uri: '/register',
+            title: "Register",
+            viewEvent: RegisterEvent
         }
     };
 
