@@ -16,7 +16,7 @@ export default function PostIndex(props) {
         <h2>${post.user.username}</h2>
         <div class="post">
     
-            <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
+            <h3 class="edit-title" data-id=${post.id"}>${post.title"}</h3>
             <h4 class="edit-content">${post.content}</h4>
     
             <!--   add edit, delete buttons, add edit form   -->
@@ -32,12 +32,9 @@ export default function PostIndex(props) {
 
 export function PostsEvent() {
 
-    // call function for create button listener
 
     createPostEvent();
 
-
-    // call function for edit button listener
 
     editEvent();
 
@@ -48,7 +45,7 @@ export function PostsEvent() {
 
 }
 
-function createPostEvent(){
+function createPostEvent() {
 
     $("#create-post-btn").click(function () {
 
@@ -59,7 +56,7 @@ function createPostEvent(){
 
         let request = {
             method: "POST",
-            headers: {"Content-Type":"application/json"},
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
         }
 
@@ -74,7 +71,7 @@ function createPostEvent(){
     })
 }
 
-function editEvent(){
+function editEvent() {
 
     $(".edit-post-btn").click(function () {
 
@@ -93,7 +90,7 @@ function editEvent(){
 
 }
 
-function submitEditEvent(){
+function submitEditEvent() {
 
     let post = {
         title: $(this).siblings(".edit-title").text(),
@@ -102,7 +99,7 @@ function submitEditEvent(){
 
     let request = {
         method: "PUT",
-        headers: {"Content-Type":"application/json"},
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(post)
     }
 
@@ -121,13 +118,13 @@ function submitEditEvent(){
 }
 
 
-function deleteEvent(){
+function deleteEvent() {
 
-    $(".delete-post-btn").click(function() {
+    $(".delete-post-btn").click(function () {
 
         let request = {
             method: "DELETE",
-            headers: {"Content-Type":"application/json"},
+            headers: {"Content-Type": "application/json"},
         }
 
         let id = $(this).attr("data-id");
