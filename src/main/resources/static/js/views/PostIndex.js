@@ -16,14 +16,14 @@ export default function PostIndex(props) {
         <h2>${post.user.username}</h2>
         <div class="post">
     
-            <h3 class="edit-title" data-id=${post.id"}>${post.title"}</h3>
-            <h4 class="edit-content">${post.content}</h4>
-    
-            <!--   add edit, delete buttons, add edit form   -->
-    
-            <button class="edit-post-btn" data-id="${post.id}">Edit</button>
-            <button class="delete-post-btn" data-id="${post.id}">Delete</button>
-        </div>
+            <h3 class="edit-title" data-id=${post.id"}>${post.title""}</h3>"
+    <h4 class="edit-content">${post.content}</h4>
+
+        <!--   add edit, delete buttons, add edit form   -->
+
+    <button class="edit-post-btn" data-id="${post.id}">Edit</button>
+    <button class="delete-post-btn" data-id="${post.id}">Delete</button>
+    </div>
         `).join('')}
     
     </main>
@@ -38,7 +38,6 @@ export function PostsEvent() {
 
     editEvent();
 
-    // call function for delete button listener
 
     deleteEvent();
 
