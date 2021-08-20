@@ -1,6 +1,5 @@
 package com.codeup.blogapp.data;
 
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -21,21 +20,37 @@ public class Post {
 
     private User user;
 
-    private Collection<Catagory> categories;
+    private Collection<Category> categories;
 
 
-    public Post(Long id, String title, String content, User user, Collection<Catagory>) {
+    public Post(Long id, String title, String content, User user, Collection<Category> categories) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;
-        this.categories = catagories;
+        this.categories = categories;
     }
 
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Collection<Catagory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Collection<Catagory> categories) {
+        this.categories = categories;
     }
 
     public Post(){}
