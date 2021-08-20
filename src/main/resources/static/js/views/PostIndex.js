@@ -8,15 +8,27 @@ export default function PostIndex(props) {
     <main>
         <!--    MAKE CREATE FORM HERE    -->
         <form>
+            <label for="title-create">Post Title:</label>
             <input type="text" id="title">
+            <label for="content-create">Post Content:</label>
             <input type="text" id="content">
             <button id="create-post-btn" type="button">Add Post</button>
         </form>
+        <form>
+<input id="post-by-cat" type="text">
+<button id="search-by-cat">Search By Category</button>
+</form>
+        <main>
+            <div class="post-container">
+                ${getPostsComponent(props.posts)}   
+            </div>
+        </main>
+        </div>
         ${props.posts.map(post => `
         <h2>${post.user.username}</h2>
         <div class="post">
     
-            <h3 class="edit-title" data-id=${post.id}>${post.title}</h3>
+            <h3 class="edit-title" data-id="${post.id}">${post.title}</h3>
             <h4 class="edit-content">${post.content}</h4>
     
             <!--   add edit, delete buttons, add edit form   -->
@@ -48,7 +60,7 @@ export function PostsEvent() {
 
 }
 
-function createPostEvent(){
+function createPostEvent() {
 
     $("#create-post-btn").click(function () {
 
@@ -59,7 +71,7 @@ function createPostEvent(){
 
         let request = {
             method: "POST",
-            headers: {"Content-Type":"application/json"},
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
         }
 
@@ -74,7 +86,7 @@ function createPostEvent(){
     })
 }
 
-function editEvent(){
+function editEvent() {
 
     $(".edit-post-btn").click(function () {
 
@@ -93,7 +105,7 @@ function editEvent(){
 
 }
 
-function submitEditEvent(){
+function submitEditEvent() {
 
     let post = {
         title: $(this).siblings(".edit-title").text(),
@@ -102,7 +114,7 @@ function submitEditEvent(){
 
     let request = {
         method: "PUT",
-        headers: {"Content-Type":"application/json"},
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(post)
     }
 
@@ -121,13 +133,13 @@ function submitEditEvent(){
 }
 
 
-function deleteEvent(){
+function deleteEvent() {
 
-    $(".delete-post-btn").click(function() {
+    $(".delete-post-btn").click(function () {
 
         let request = {
             method: "DELETE",
-            headers: {"Content-Type":"application/json"},
+            headers: {"Content-Type": "application/json"},
         }
 
         let id = $(this).attr("data-id");
