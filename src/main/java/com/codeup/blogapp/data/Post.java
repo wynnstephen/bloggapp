@@ -25,8 +25,8 @@ public class Post {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "post_category",
-            joinColumn = {@JoinColumn(name = "post_id")},
-            inverseJoinColumns = {@joinColumn(name = "category_id")}
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
 
     private Collection<Category> categories;
