@@ -3,13 +3,13 @@ package com.codeup.blogapp.web;
 
 import com.codeup.blogapp.data.Post;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/posts", headers = "accept=application/json")
+@RequestMapping(value = "/api/posts", headers = "Accept=application/json")
 public class PostController {
+
 
 
     @GetMapping
@@ -35,5 +35,18 @@ public class PostController {
     private void createPost(Post newPost){
         System.out.println(newPost.getTitle());
         System.out.println(newPost.getContent());
+    }
+
+    @PutMapping({"/{id}"})
+    private void updatePost(@PathVariable Long id, @RequestBody Post post){
+
+        System.out.println(post.getTitle());
+        System.out.println(post.getContent());
+
+    }
+
+    @DeleteMapping({"/{id}"})
+    private void deletePost(@PathVariable Long id){
+        System.out.println("This id has been deleted: " + id);
     }
 }
