@@ -15,8 +15,12 @@ public class Category {
     @Column(nullable=false, length = 150)
     private String name;
 
-
+    @ManyToMany(mappedBy = "categories")
     private Collection<Post> post;
+
+    public Category(){
+
+    }
 
     public Category(long id, String name) {
         this.id = id;

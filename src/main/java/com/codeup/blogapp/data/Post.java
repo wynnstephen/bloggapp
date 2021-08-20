@@ -18,7 +18,16 @@ public class Post {
     @Column(nullable=false)
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "post_category",
+            joinColumn = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@joinColumn(name = "category_id")}
+    )
 
     private Collection<Category> categories;
 
@@ -45,11 +54,11 @@ public class Post {
         this.user = user;
     }
 
-    public Collection<Catagory> getCategories() {
+    public Collection<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(Collection<Catagory> categories) {
+    public void setCategories(Collection<Category> categories) {
         this.categories = categories;
     }
 

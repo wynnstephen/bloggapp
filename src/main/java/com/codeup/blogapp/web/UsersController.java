@@ -3,6 +3,8 @@ package com.codeup.blogapp.web;
 import com.codeup.blogapp.data.Post;
 import com.codeup.blogapp.data.User;
 import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.JoinTable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -76,6 +78,8 @@ public class UsersController {
             }
         }
     }
+
+    @JoinTable
 
     @DeleteMapping({"{id}"})
     private void deleteUser(@PathVariable Long id){
