@@ -1,5 +1,7 @@
 package com.codeup.blogapp.data;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.Collection;
@@ -21,7 +23,13 @@ public class User {
     @Column(nullable=false, length = 150)
     private String password;
 
-    private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role = Role.USER;
+
+    @OneToMany(mappedBy = "id")
+
+    @JsonBackReference
 
 
 
