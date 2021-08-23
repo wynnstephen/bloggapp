@@ -19,16 +19,6 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
-    User user = new User("person");
-
-    List<Category> categories = new ArrayList<>(){{
-        add(new Category(1L, "action"));
-        add(new Category(1L, "comedy"));
-        add(new Category(1L, "historical"));
-
-    }};
-
-
     @GetMapping
     public List<Post> getPosts() {
         return postRepository.findAll();

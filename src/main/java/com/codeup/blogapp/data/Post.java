@@ -2,6 +2,7 @@ package com.codeup.blogapp.data;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -22,18 +23,17 @@ public class Post {
     private String content;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonIgnore
     @JoinTable(
             name = "post_category",
             joinColumns = {@JoinColumn(name = "post_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
-
     private Collection<Category> categories;
 
 
@@ -50,6 +50,7 @@ public class Post {
         this.content = content;
 
     }
+
 
     public User getUser() {
         return user;

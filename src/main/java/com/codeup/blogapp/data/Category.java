@@ -1,6 +1,12 @@
 package com.codeup.blogapp.data;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Entity;
+import org.hibernate.annotations.Table;
+import org.springframework.data.annotation.Id;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -14,9 +20,11 @@ public class Category {
 
     @Column(nullable=false, length = 150)
     private String name;
-
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categories")
     private Collection<Post> post;
+
+
 
     public Category(){
 
