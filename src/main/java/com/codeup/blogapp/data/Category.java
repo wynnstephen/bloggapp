@@ -1,11 +1,6 @@
 package com.codeup.blogapp.data;
 
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.hibernate.annotations.Entity;
-import org.hibernate.annotations.Table;
-import org.springframework.data.annotation.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -18,15 +13,25 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable=false, length = 150)
+    @Column(nullable = false, length = 150)
     private String name;
-    @JsonManagedReference
-    @ManyToMany(mappedBy = "categories")
-    private Collection<Post> post;
+
+    @ManyToMany(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST, CascadeType.REFRESH},
+            targetEntity = Post.class)
+    @JoinTable(
+            name = "post_category",
+            joinColumns = {@JoinColumn(name = "category_id", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "post_id", nullable = false, updatable = false)},
+            foreignKey = @ForeignKey(ConstraintMode.CONSTRAINT),
+            inverseForeignKey = @ForeignKey(ConstraintMode.CONSTRAINT)
+    )
+    @JsonIgnoreProperties("categories")
+    private Collection<Post> posts;
 
 
-
-    public Category(){
+    public Category() {
 
     }
 
@@ -51,11 +56,11 @@ public class Category {
         this.name = name;
     }
 
-    public Collection<Post> getPost() {
-        return post;
+    public Collection<Post> getPosts() {
+        return posts;
     }
 
-    public void setPost(Collection<Post> post) {
-        this.post = post;
+    public void setPosts(Collection<Post> posts) {
+        this.posts = posts;
     }
 }

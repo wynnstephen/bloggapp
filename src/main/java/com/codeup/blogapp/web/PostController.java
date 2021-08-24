@@ -24,11 +24,6 @@ public class PostController {
 
         return postRepository.findAll();
 
-//        return new ArrayList<Post>() {{
-//            add(new Post(1L, "A new Post", "this is a brilliant post. 10/10", user, categories));
-//            add(new Post(1L, "A new Post", "this is an even more brilliant post. 10/10", user, categories));
-//            add(new Post(1L, "A new Post", "this is an even even more brilliant post. 10/10", user, categories));
-//        }};
     }
 
     @GetMapping("{id}")
@@ -36,11 +31,6 @@ public class PostController {
 
         return postRepository.getById(id);
 
-//        if (id == 1){
-//            return new Post(1L, "A new Post", "this is a brilliant post. 10/10", user, categories);
-//        }else{
-//            return null;
-//        }
     }
 
     @PostMapping
