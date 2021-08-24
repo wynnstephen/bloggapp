@@ -21,6 +21,7 @@ public class PostController {
 
     @GetMapping
     public List<Post> getPosts() {
+
         return postRepository.findAll();
 
 //        return new ArrayList<Post>() {{
