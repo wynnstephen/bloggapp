@@ -28,20 +28,21 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .formLogin()
+                http
+      .formLogin()
                 .disable()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**", /*"/api/posts",*/ "/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                .and()
-                .authorizeRequests()
                 .antMatchers("/api/users/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/api/posts/**").hasAnyAuthority("ADMIN", "USER")
                 .antMatchers("/api/**").authenticated()
+                .antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                .antMatchers("/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint).accessDeniedHandler(new CustomAccessDeniedHandler());
+                .exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint).accessDeniedHandler(new CustomAccessDeniedHandler());¬
     }
 
 }
